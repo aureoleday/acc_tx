@@ -73,9 +73,8 @@ static rt_err_t dac_cb(rt_device_t dev, rt_size_t size)
 {
     extern sys_reg_st  g_sys;
     static uint16_t f1_ind = 0;
-    static uint16_t f2_ind = 0;
     static uint16_t rect_flag=0;
-    int16_t sig0=0,sig1=0,sig2=0;
+    int16_t sig0=0,sig1=0;
     uint16_t sig_mix = 0;
 
     if(g_sys.conf.wg_mode == 0)
@@ -121,19 +120,6 @@ static rt_err_t dac_cb(rt_device_t dev, rt_size_t size)
         sig1 = (Sine12bit[f1_ind]-2047)>>(10-g_sys.stat.volum_index);
         sig_mix = (sig1>>(10-g_sys.stat.volum_index)) +g_sys.conf.dac_offset;
         f1_ind = (f1_ind+g_sys.stat.mul_factor)&0x00ff;
-        if(g_sys.stat.out_en == 0)
-            sr_hwt_stop();
-    }
-    else if(g_sys.conf.wg_mode == 2)
-    {
-//        sig1 = (Sine12bit[f1_ind]-2047)>>(10-g_sys.stat.volum_index);
-//        sig2 = (Sine12bit[(f2_ind + g_sys.conf.phase_offset)&0x00ff]-2047)>>(10-g_sys.stat.volum_index);
-//        sig_mix = (sig1 + sig2)/2 +g_sys.conf.dac_offset;
-        sig1 = (Sine12bit[f1_ind]-2047);
-        sig2 = (Sine12bit[(f2_ind + g_sys.conf.phase_offset)&0x00ff]-2047);
-        sig_mix = ((sig1 + sig2)>>(11-g_sys.stat.volum_index)) +g_sys.conf.dac_offset;
-        f1_ind = (f1_ind+g_sys.stat.mul_factor)&0x00ff;
-        f2_ind = (f2_ind+g_sys.stat.mul_factor+((g_sys.stat.mul_factor>>1)*g_sys.conf.dt_half_shift))&0x00ff;
         if(g_sys.stat.out_en == 0)
             sr_hwt_stop();
     }
