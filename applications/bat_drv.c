@@ -27,12 +27,22 @@ static uint16_t adc_get_raw(uint8_t chan_id)
     return rt_adc_read(adc_device, chan_id);
 }
 
+
 static uint16_t adc_get_volt(uint8_t chan_id)
 {
     uint16_t temp,volt;
     temp = adc_get_raw(chan_id);
 
     volt = 0.8059*temp;
+    return volt;
+}
+
+static uint16_t adc_get_temp(void)
+{
+    uint16_t temp,volt;
+    temp = adc_get_raw(10);
+
+    volt = (temp*3300/4096-760)/2.5+25;
     return volt;
 }
 
@@ -106,6 +116,7 @@ static int bat_drv_init(void)
 static void bat_volt(void)
 {
     rt_kprintf("adc val:%d\n",adc_get_volt(1));
+    rt_kprintf("temp val:%d\n",adc_get_volt(10));
 }
 
 static void bat_app_entry(void *parameter)
