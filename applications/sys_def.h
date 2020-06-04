@@ -50,8 +50,10 @@ enum
 
 enum
 {    
-    GBM_FLASH = 0,    
+    GBM_GPRS = 0,
     GBM_LINK,
+    GBM_POUT,
+    GBM_LOAD,
     GBM_MBM
 };
 

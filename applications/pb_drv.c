@@ -17,8 +17,7 @@
 #define     STS_GPRS        GET_PIN(C, 15)
 #define     STS_LINK1       GET_PIN(A, 15)
 #define     STS_LINK2       GET_PIN(C, 13)
-
-#define     STS_LOAD        GET_PIN(C, 14)
+#define     STS_LOAD_DET    GET_PIN(A, 0)
 
 #define     Bit_RESET		0
 #define     Bit_SET		 	1	
@@ -99,6 +98,7 @@ int pb_init(void)
     rt_pin_mode(STS_GPRS, PIN_MODE_INPUT_PULLUP);
     rt_pin_mode(STS_LINK1, PIN_MODE_INPUT_PULLUP);
     rt_pin_mode(STS_LINK2, PIN_MODE_INPUT_PULLUP);
+    rt_pin_mode(STS_LOAD_DET, PIN_MODE_INPUT_PULLUP);
 
     tim_init();
 
@@ -125,6 +125,7 @@ uint8_t in_sts_update(void)
 
     bitmap |= rt_pin_read(STS_GPRS);
     bitmap |= rt_pin_read(STS_LINK1)<<1;
+    bitmap |= rt_pin_read(STS_LOAD_DET)<<2;
     bitmap |= (g_sys.stat.out_en)<<3;
 
     g_sys.stat.ms_status = (g_sys.stat.ms_status&0xfff0)|(bitmap&0x000f);
