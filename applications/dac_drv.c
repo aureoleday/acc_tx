@@ -13,6 +13,7 @@
 #include "sys_conf.h"
 
 #define MUX_SEL       GET_PIN(A, 2)
+#define BEEPER        GET_PIN(B, 0)
 
 #define HWTIMER_DEV_NAME   "timer2"     /* 定时器名称 */
 static rt_device_t hw_dev = RT_NULL;   /* 定时器设备句柄 */
@@ -112,11 +113,13 @@ static rt_err_t dac_cb(rt_device_t dev, rt_size_t size)
     if(rect_flag == 0)
     {
         rt_pin_write(MUX_SEL, PIN_HIGH);
+        rt_pin_write(BEEPER, PIN_HIGH);
         rect_flag = 1;
     }
     else
     {
         rt_pin_write(MUX_SEL, PIN_LOW);
+        rt_pin_write(BEEPER, PIN_LOW);
         rect_flag = 0;
     }
     return 0;
@@ -222,6 +225,12 @@ void dac_set(uint32_t dac_val)
     HAL_DAC_SetValue(&hdac,DAC_CHANNEL_1,DAC_ALIGN_12B_R,dac_val);
 }
 
+void dac_set_volum(void)
+{
+    extern sys_reg_st  g_sys;
+    dac_set(OPWR_IND[g_sys.stat.volum_index]);
+}
+
 static void dac_set_val(int argc, char**argv)
 {
     if (argc < 2)
@@ -243,7 +252,9 @@ void dac_init(void)
 {
     extern sys_reg_st  g_sys;
     rt_pin_mode(MUX_SEL, PIN_MODE_OUTPUT);
+    rt_pin_mode(BEEPER, PIN_MODE_OUTPUT);
     rt_pin_write(MUX_SEL, PIN_LOW);
+    rt_pin_write(BEEPER, PIN_LOW);
     MX_DAC_Init();
     dac_start();
     hwt_init();

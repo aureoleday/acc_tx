@@ -42,7 +42,7 @@ static uint16_t adc_get_temp(void)
     uint16_t temp,volt;
     temp = adc_get_raw(10);
 
-    volt = (temp*3300/4096-760)/2.5+25;
+    volt = (temp*3300/4096-760)*4+250;
     return volt;
 }
 
@@ -91,6 +91,7 @@ void bat_update(void)
 	extern sys_reg_st g_sys;
 	g_sys.stat.bat_volt = bat_mav_calc(g_sys.conf.bat_mav_cnt);
 	g_sys.stat.bat_volum = bat_pwr_calc(g_sys.conf.bat_up_lim,g_sys.conf.bat_low_lim,g_sys.stat.bat_volt);
+	g_sys.stat.mcu_temp = adc_get_temp();
 	set_bat_led(g_sys.stat.bat_volum/10);
 }
 
@@ -116,7 +117,7 @@ static int bat_drv_init(void)
 static void bat_volt(void)
 {
     rt_kprintf("adc val:%d\n",adc_get_volt(1));
-    rt_kprintf("temp val:%d\n",adc_get_volt(10));
+    rt_kprintf("temp val:%d\n",adc_get_temp());
 }
 
 static void bat_app_entry(void *parameter)

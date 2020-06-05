@@ -12,6 +12,7 @@
 
 void dac_init(void);
 void dac_set(uint32_t dac_val);
+void dac_set_volum(void);
 int16_t sr_hwt_stop(void);
 int16_t sr_hwt_start(int16_t sec,int16_t u_sec);
 int16_t sr_hwt_stop(void);

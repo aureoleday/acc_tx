@@ -38,6 +38,7 @@ typedef struct
 {
     uint16_t    software_ver;
     uint16_t    hardware_ver;
+    uint16_t    mcu_temp;
     uint16_t    bat_adc_raw;
     uint16_t    bat_volt;
     uint16_t    bat_volum;

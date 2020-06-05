@@ -9,18 +9,12 @@ uint16_t power_en_opt(uint16_t pram)
     if(pram == 0)
     {
         g_sys.stat.out_en = 0;
+        sr_hwt_stop();
     }
     else
     {
         g_sys.stat.volum_reg = 0;
-        if(g_sys.conf.wg_mode != 0)
-        {
-            sr_hwt_start(0,g_sys.stat.half_period);
-        }
-        else
-        {
-            sr_hwt_start(0,g_sys.stat.rect_freq);
-        }
+        sr_hwt_start(0,g_sys.stat.rect_freq);
         g_sys.stat.out_en = 1;
     }
 
@@ -32,6 +26,7 @@ uint16_t power_en_opt(uint16_t pram)
 uint16_t volum_opt(uint16_t pram)
 {
     extern sys_reg_st  g_sys;
+    dac_set_volum();
     g_sys.stat.volum_index = pram;
     set_vol_led(g_sys.stat.volum_index);
     return 1;
@@ -102,16 +97,8 @@ uint16_t freq_opt(uint16_t pram)
         }
     }
 
-    if(g_sys.conf.wg_mode != 0)
-    {
-        sr_hwt_stop();
-        rt_thread_delay(1);
-        sr_hwt_start(0,g_sys.stat.half_period);
-    }
-    else
-    {
-        rect_freq_opt(g_sys.stat.rect_freq);
-    }
+    rect_freq_opt(g_sys.stat.rect_freq);
+
     set_freq_led(g_sys.stat.freq_index);
     return 1;
 }
