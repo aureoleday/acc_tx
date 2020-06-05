@@ -129,7 +129,7 @@ uint8_t in_sts_update(void)
     bitmap |= (g_sys.stat.out_en)<<3;
 
     g_sys.stat.ms_status = (g_sys.stat.ms_status&0xfff0)|(bitmap&0x000f);
-
+//    rt_kprintf("bm:%x,ms:%x\n",bitmap,g_sys.stat.ms_status);
     return bitmap;
 }
 

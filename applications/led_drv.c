@@ -439,7 +439,8 @@ void sts_led_update(void)
     else
         set_ind_led(0,1);
 
-    if((g_sys.stat.ms_status&GBM_POUT) != 0)
+//    if((g_sys.stat.ms_status&GBM_POUT) != 0)
+    if(((g_sys.stat.ms_status>>GBM_LINK)&0x0001) == 1)
         set_ind_led(1,0);
     else
         set_ind_led(1,1);

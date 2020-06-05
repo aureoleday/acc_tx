@@ -13,7 +13,7 @@
 #include "sys_conf.h"
 
 #define MUX_SEL       GET_PIN(A, 2)
-#define BEEPER        GET_PIN(B, 0)
+#define BEEPER        GET_PIN(A, 11)
 
 #define HWTIMER_DEV_NAME   "timer2"     /* 定时器名称 */
 static rt_device_t hw_dev = RT_NULL;   /* 定时器设备句柄 */
@@ -29,9 +29,15 @@ TIM_HandleTypeDef htim2;
 //};
 
 //1x
+//const uint16_t OPWR_IND[10] =
+//{
+//        353, 588, 789, 967, 1116, 1367, 1578, 1765, 1933, 2603
+//};
+
+//1x-200DAC
 const uint16_t OPWR_IND[10] =
 {
-        353, 588, 789, 967, 1116, 1367, 1578, 1765, 1933, 2603
+        203, 438, 639, 817, 966, 1217, 1428, 1615, 1783, 2453
 };
 
 //1.5x

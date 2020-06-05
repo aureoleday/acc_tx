@@ -53,8 +53,7 @@ enum
     GBM_GPRS = 0,
     GBM_LINK,
     GBM_POUT,
-    GBM_LOAD,
-    GBM_MBM
+    GBM_LOAD
 };
 
 #endif //__SYS_DEF

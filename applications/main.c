@@ -40,6 +40,7 @@ int main(void)
     {
         in_sts_update();
         sts_led_update();
+
         rt_pin_write(LED3_PIN, PIN_HIGH);
         rt_thread_mdelay(500);
         rt_pin_write(LED3_PIN, PIN_LOW);

@@ -4,6 +4,9 @@
 
 #define BAT_APP_THREAD_STACK_SIZE        512
 #define MAV_MAX_CNT 64
+//#define TS1_CAL_Flash_Add  0x1ffff7b8
+//#define TS2_CAL_Flash_Add  0x1ffff7c2
+
 
 typedef struct
 {
@@ -13,7 +16,7 @@ typedef struct
     uint16_t	buffer_ff;
 }bat_st;
 
-static bat_st bat_inst;
+static bat_st bat_inst,temp_inst;
 
 static rt_adc_device_t adc_device = RT_NULL;
 
@@ -40,9 +43,15 @@ static uint16_t adc_get_volt(uint8_t chan_id)
 static uint16_t adc_get_temp(void)
 {
     uint16_t temp,volt;
-    temp = adc_get_raw(10);
+//    tc1 = *((__IO uint16_t*)( (uint32_t)TS1_CAL_Flash_Add ));
+//    tc2 = *((__IO uint16_t*)( (uint32_t)TS2_CAL_Flash_Add ));
+    float temperate;
+    temp = adc_get_raw(ADC_CHANNEL_TEMPSENSOR);
 
-    volt = (temp*3300/4096-760)*4+250;
+//    rt_kprintf("tc1:%d,tc2:%d\n",tc1,tc2);
+    temperate = ((float)temp*3.3/0x1000);
+    temperate = 25 + (1.34-temperate)/0.0043;
+    volt = temperate*10;
     return volt;
 }
 
@@ -75,6 +84,35 @@ static uint16_t bat_mav_calc(uint16_t mav_cnt_set)
 	return bat_mav_volt*105/50;
 }
 
+static uint16_t temp_mav_calc(uint16_t mav_cnt_set)
+{
+    uint16_t temp_mav_volt = 0;
+    uint16_t temp_volt = adc_get_temp();
+    if(temp_inst.buffer_ff == 0)
+    {
+        temp_inst.mav_buffer[temp_inst.mav_cnt] = temp_volt;
+        temp_inst.accum_sum += temp_inst.mav_buffer[temp_inst.mav_cnt];
+        temp_inst.mav_cnt ++;
+        temp_mav_volt = temp_inst.accum_sum/temp_inst.mav_cnt;
+        if(temp_inst.mav_cnt >= mav_cnt_set)
+        {
+            temp_inst.mav_cnt = 0;
+            temp_inst.buffer_ff = 1;
+        }
+    }
+    else
+    {
+        temp_inst.accum_sum -= temp_inst.mav_buffer[temp_inst.mav_cnt];
+        temp_inst.mav_buffer[temp_inst.mav_cnt] = temp_volt;
+        temp_inst.accum_sum += temp_inst.mav_buffer[temp_inst.mav_cnt];
+        temp_inst.mav_cnt ++;
+        if(temp_inst.mav_cnt >= mav_cnt_set)
+            temp_inst.mav_cnt = 0;
+        temp_mav_volt = temp_inst.accum_sum/mav_cnt_set;
+    }
+    return temp_mav_volt;
+}
+
 static int16_t bat_pwr_calc(uint16_t up_lim, uint16_t low_lim, uint16_t bat_volt)
 {
     int16_t res_pwr = 0;
@@ -91,7 +129,9 @@ void bat_update(void)
 	extern sys_reg_st g_sys;
 	g_sys.stat.bat_volt = bat_mav_calc(g_sys.conf.bat_mav_cnt);
 	g_sys.stat.bat_volum = bat_pwr_calc(g_sys.conf.bat_up_lim,g_sys.conf.bat_low_lim,g_sys.stat.bat_volt);
-	g_sys.stat.mcu_temp = adc_get_temp();
+	g_sys.stat.mcu_temp = temp_mav_calc(g_sys.conf.bat_mav_cnt);
+//	g_sys.stat.mcu_temp = adc_get_temp();
+//	rt_kprintf("t:%d",g_sys.stat.mcu_temp);
 	set_bat_led(g_sys.stat.bat_volum/10);
 }
 
