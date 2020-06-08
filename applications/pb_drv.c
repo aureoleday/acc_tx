@@ -125,8 +125,8 @@ uint8_t in_sts_update(void)
 
     bitmap |= rt_pin_read(STS_GPRS);
     bitmap |= rt_pin_read(STS_LINK1)<<1;
-    bitmap |= rt_pin_read(STS_LOAD_DET)<<2;
-    bitmap |= (g_sys.stat.out_en)<<3;
+    bitmap |= rt_pin_read(STS_LOAD_DET)<<3;
+    bitmap |= (g_sys.stat.out_en)<<2;
 
     g_sys.stat.ms_status = (g_sys.stat.ms_status&0xfff0)|(bitmap&0x000f);
 //    rt_kprintf("bm:%x,ms:%x\n",bitmap,g_sys.stat.ms_status);
