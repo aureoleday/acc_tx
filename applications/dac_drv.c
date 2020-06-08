@@ -23,17 +23,6 @@ DAC_HandleTypeDef hdac;
 TIM_HandleTypeDef htim6;
 TIM_HandleTypeDef htim2;
 
-//const uint16_t OPWR_IND[10] =
-//{
-//        260, 412, 582, 713, 823, 1008, 1164, 1302, 1426, 1920
-//};
-
-//1x
-//const uint16_t OPWR_IND[10] =
-//{
-//        353, 588, 789, 967, 1116, 1367, 1578, 1765, 1933, 2603
-//};
-
 //1x-200DAC
 //const uint16_t OPWR_IND[10] =
 //{
@@ -41,11 +30,11 @@ TIM_HandleTypeDef htim2;
 //        203, 438, 639, 817, 966, 1217, 1428, 1615, 1783, 2453
 //};
 
-//1x-200DAC
+//1x-150DAC
 const uint16_t OPWR_IND[5] =
 {
-      //2    10   30    50    60
-        203, 639, 1217, 1615, 1783
+      //2    10   20    30    50
+        203, 639, 966,  1217, 1615
 };
 
 //1.5x
