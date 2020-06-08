@@ -13,7 +13,7 @@
 #include "sys_conf.h"
 
 #define MUX_SEL       GET_PIN(A, 2)
-#define BEEPER        GET_PIN(A, 11)
+#define BEEPER        GET_PIN(B, 0)
 
 #define HWTIMER_DEV_NAME   "timer2"     /* 定时器名称 */
 static rt_device_t hw_dev = RT_NULL;   /* 定时器设备句柄 */
@@ -35,9 +35,17 @@ TIM_HandleTypeDef htim2;
 //};
 
 //1x-200DAC
-const uint16_t OPWR_IND[10] =
+//const uint16_t OPWR_IND[10] =
+//{
+//      //2     5    10   15   20   30    40    50    60    hl
+//        203, 438, 639, 817, 966, 1217, 1428, 1615, 1783, 2453
+//};
+
+//1x-200DAC
+const uint16_t OPWR_IND[5] =
 {
-        203, 438, 639, 817, 966, 1217, 1428, 1615, 1783, 2453
+      //2    10   30    50    60
+        203, 639, 1217, 1615, 1783
 };
 
 //1.5x
@@ -115,11 +123,13 @@ int16_t sr_hwt_stop(void);
 
 static rt_err_t dac_cb(rt_device_t dev, rt_size_t size)
 {
+    extern sys_reg_st  g_sys;
     static uint16_t rect_flag=0;
     if(rect_flag == 0)
     {
         rt_pin_write(MUX_SEL, PIN_HIGH);
-        rt_pin_write(BEEPER, PIN_HIGH);
+        if(g_sys.conf.beep_en == 1)
+            rt_pin_write(BEEPER, PIN_HIGH);
         rect_flag = 1;
     }
     else
@@ -215,7 +225,7 @@ static void MX_DAC_Init(void)
   /** DAC channel OUT1 config
   */
   sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
-  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_DISABLE;
+  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
   if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_1) != HAL_OK)
   {
     Error_Handler();

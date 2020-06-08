@@ -15,12 +15,6 @@
 #define LED_BAT1       GET_PIN(C, 1)
 #define LED_BAT2       GET_PIN(C, 2)
 #define LED_BAT3       GET_PIN(C, 3)
-#define LED_BAT4       GET_PIN(C, 4)
-#define LED_BAT5       GET_PIN(C, 5)
-#define LED_BAT6       GET_PIN(C, 6)
-#define LED_BAT7       GET_PIN(C, 7)
-#define LED_BAT8       GET_PIN(C, 8)
-#define LED_BAT9       GET_PIN(C, 9)
 
 #define LED_F0         GET_PIN(C, 10)
 #define LED_F1         GET_PIN(C, 11)
@@ -31,10 +25,6 @@
 #define LED_P1         GET_PIN(A, 6)
 #define LED_P2         GET_PIN(A, 7)
 #define LED_P3         GET_PIN(A, 8)
-#define LED_P4         GET_PIN(B, 12)
-#define LED_P5         GET_PIN(B, 2)
-#define LED_P6         GET_PIN(B, 1)
-#define LED_P7         GET_PIN(B, 0)
 
 #define FAN_CTRL       GET_PIN(A, 12)
 
@@ -53,13 +43,7 @@ void set_bat_led(uint16_t bat_cnt)
                 rt_pin_write(LED_BAT0, PIN_HIGH);
                 rt_pin_write(LED_BAT1, PIN_HIGH);
                 rt_pin_write(LED_BAT2, PIN_HIGH);
-                rt_pin_write(LED_BAT3, PIN_HIGH);
-                rt_pin_write(LED_BAT4, PIN_HIGH);
-                rt_pin_write(LED_BAT5, PIN_HIGH);
-                rt_pin_write(LED_BAT6, PIN_HIGH);
-                rt_pin_write(LED_BAT7, PIN_HIGH);
-                rt_pin_write(LED_BAT8, PIN_HIGH);
-                rt_pin_write(LED_BAT9, PIN_LOW);
+                rt_pin_write(LED_BAT3, PIN_LOW);
                 bat_reg = 1;
             }
             else
@@ -68,12 +52,6 @@ void set_bat_led(uint16_t bat_cnt)
                 rt_pin_write(LED_BAT1, PIN_HIGH);
                 rt_pin_write(LED_BAT2, PIN_HIGH);
                 rt_pin_write(LED_BAT3, PIN_HIGH);
-                rt_pin_write(LED_BAT4, PIN_HIGH);
-                rt_pin_write(LED_BAT5, PIN_HIGH);
-                rt_pin_write(LED_BAT6, PIN_HIGH);
-                rt_pin_write(LED_BAT7, PIN_HIGH);
-                rt_pin_write(LED_BAT8, PIN_HIGH);
-                rt_pin_write(LED_BAT9, PIN_HIGH);
                 bat_reg = 0;
             }
             break;
@@ -83,139 +61,31 @@ void set_bat_led(uint16_t bat_cnt)
             rt_pin_write(LED_BAT0, PIN_HIGH);
             rt_pin_write(LED_BAT1, PIN_HIGH);
             rt_pin_write(LED_BAT2, PIN_HIGH);
-            rt_pin_write(LED_BAT3, PIN_HIGH);
-            rt_pin_write(LED_BAT4, PIN_HIGH);
-            rt_pin_write(LED_BAT5, PIN_HIGH);
-            rt_pin_write(LED_BAT6, PIN_HIGH);
-            rt_pin_write(LED_BAT7, PIN_HIGH);
-            rt_pin_write(LED_BAT8, PIN_HIGH);
-            rt_pin_write(LED_BAT9, PIN_LOW);
+            rt_pin_write(LED_BAT3, PIN_LOW);
             break;
         }
         case 2:
         {
             rt_pin_write(LED_BAT0, PIN_HIGH);
             rt_pin_write(LED_BAT1, PIN_HIGH);
-            rt_pin_write(LED_BAT2, PIN_HIGH);
-            rt_pin_write(LED_BAT3, PIN_HIGH);
-            rt_pin_write(LED_BAT4, PIN_HIGH);
-            rt_pin_write(LED_BAT5, PIN_HIGH);
-            rt_pin_write(LED_BAT6, PIN_HIGH);
-            rt_pin_write(LED_BAT7, PIN_HIGH);
-            rt_pin_write(LED_BAT8, PIN_LOW);
-            rt_pin_write(LED_BAT9, PIN_LOW);
+            rt_pin_write(LED_BAT2, PIN_LOW);
+            rt_pin_write(LED_BAT3, PIN_LOW);
             break;
         }
         case 3:
         {
             rt_pin_write(LED_BAT0, PIN_HIGH);
-            rt_pin_write(LED_BAT1, PIN_HIGH);
-            rt_pin_write(LED_BAT2, PIN_HIGH);
-            rt_pin_write(LED_BAT3, PIN_HIGH);
-            rt_pin_write(LED_BAT4, PIN_HIGH);
-            rt_pin_write(LED_BAT5, PIN_HIGH);
-            rt_pin_write(LED_BAT6, PIN_HIGH);
-            rt_pin_write(LED_BAT7, PIN_LOW);
-            rt_pin_write(LED_BAT8, PIN_LOW);
-            rt_pin_write(LED_BAT9, PIN_LOW);
-            break;
-        }
-        case 4:
-        {
-            rt_pin_write(LED_BAT0, PIN_HIGH);
-            rt_pin_write(LED_BAT1, PIN_HIGH);
-            rt_pin_write(LED_BAT2, PIN_HIGH);
-            rt_pin_write(LED_BAT3, PIN_HIGH);
-            rt_pin_write(LED_BAT4, PIN_HIGH);
-            rt_pin_write(LED_BAT5, PIN_HIGH);
-            rt_pin_write(LED_BAT6, PIN_LOW);
-            rt_pin_write(LED_BAT7, PIN_LOW);
-            rt_pin_write(LED_BAT8, PIN_LOW);
-            rt_pin_write(LED_BAT9, PIN_LOW);
-            break;
-        }
-        case 5:
-        {
-            rt_pin_write(LED_BAT0, PIN_HIGH);
-            rt_pin_write(LED_BAT1, PIN_HIGH);
-            rt_pin_write(LED_BAT2, PIN_HIGH);
-            rt_pin_write(LED_BAT3, PIN_HIGH);
-            rt_pin_write(LED_BAT4, PIN_HIGH);
-            rt_pin_write(LED_BAT5, PIN_LOW);
-            rt_pin_write(LED_BAT6, PIN_LOW);
-            rt_pin_write(LED_BAT7, PIN_LOW);
-            rt_pin_write(LED_BAT8, PIN_LOW);
-            rt_pin_write(LED_BAT9, PIN_LOW);
-            break;
-        }
-        case 6:
-        {
-            rt_pin_write(LED_BAT0, PIN_HIGH);
-            rt_pin_write(LED_BAT1, PIN_HIGH);
-            rt_pin_write(LED_BAT2, PIN_HIGH);
-            rt_pin_write(LED_BAT3, PIN_HIGH);
-            rt_pin_write(LED_BAT4, PIN_LOW);
-            rt_pin_write(LED_BAT5, PIN_LOW);
-            rt_pin_write(LED_BAT6, PIN_LOW);
-            rt_pin_write(LED_BAT7, PIN_LOW);
-            rt_pin_write(LED_BAT8, PIN_LOW);
-            rt_pin_write(LED_BAT9, PIN_LOW);
-            break;
-        }
-        case 7:
-        {
-            rt_pin_write(LED_BAT0, PIN_HIGH);
-            rt_pin_write(LED_BAT1, PIN_HIGH);
-            rt_pin_write(LED_BAT2, PIN_HIGH);
-            rt_pin_write(LED_BAT3, PIN_LOW);
-            rt_pin_write(LED_BAT4, PIN_LOW);
-            rt_pin_write(LED_BAT5, PIN_LOW);
-            rt_pin_write(LED_BAT6, PIN_LOW);
-            rt_pin_write(LED_BAT7, PIN_LOW);
-            rt_pin_write(LED_BAT8, PIN_LOW);
-            rt_pin_write(LED_BAT9, PIN_LOW);
-            break;
-        }
-        case 8:
-        {
-            rt_pin_write(LED_BAT0, PIN_HIGH);
-            rt_pin_write(LED_BAT1, PIN_HIGH);
-            rt_pin_write(LED_BAT2, PIN_LOW);
-            rt_pin_write(LED_BAT3, PIN_LOW);
-            rt_pin_write(LED_BAT4, PIN_LOW);
-            rt_pin_write(LED_BAT5, PIN_LOW);
-            rt_pin_write(LED_BAT6, PIN_LOW);
-            rt_pin_write(LED_BAT7, PIN_LOW);
-            rt_pin_write(LED_BAT8, PIN_LOW);
-            rt_pin_write(LED_BAT9, PIN_LOW);
-            break;
-        }
-        case 9:
-        {
-            rt_pin_write(LED_BAT0, PIN_HIGH);
             rt_pin_write(LED_BAT1, PIN_LOW);
             rt_pin_write(LED_BAT2, PIN_LOW);
             rt_pin_write(LED_BAT3, PIN_LOW);
-            rt_pin_write(LED_BAT4, PIN_LOW);
-            rt_pin_write(LED_BAT5, PIN_LOW);
-            rt_pin_write(LED_BAT6, PIN_LOW);
-            rt_pin_write(LED_BAT7, PIN_LOW);
-            rt_pin_write(LED_BAT8, PIN_LOW);
-            rt_pin_write(LED_BAT9, PIN_LOW);
             break;
         }
-        case 10:
+        case 4:
         {
             rt_pin_write(LED_BAT0, PIN_LOW);
             rt_pin_write(LED_BAT1, PIN_LOW);
             rt_pin_write(LED_BAT2, PIN_LOW);
             rt_pin_write(LED_BAT3, PIN_LOW);
-            rt_pin_write(LED_BAT4, PIN_LOW);
-            rt_pin_write(LED_BAT5, PIN_LOW);
-            rt_pin_write(LED_BAT6, PIN_LOW);
-            rt_pin_write(LED_BAT7, PIN_LOW);
-            rt_pin_write(LED_BAT8, PIN_LOW);
-            rt_pin_write(LED_BAT9, PIN_LOW);
             break;
         }
         default:
@@ -224,12 +94,6 @@ void set_bat_led(uint16_t bat_cnt)
             rt_pin_write(LED_BAT1, PIN_HIGH);
             rt_pin_write(LED_BAT2, PIN_HIGH);
             rt_pin_write(LED_BAT3, PIN_HIGH);
-            rt_pin_write(LED_BAT4, PIN_HIGH);
-            rt_pin_write(LED_BAT5, PIN_HIGH);
-            rt_pin_write(LED_BAT6, PIN_HIGH);
-            rt_pin_write(LED_BAT7, PIN_HIGH);
-            rt_pin_write(LED_BAT8, PIN_HIGH);
-            rt_pin_write(LED_BAT9, PIN_HIGH);
             break;
         }
     }
@@ -239,89 +103,28 @@ void set_vol_led(uint16_t vol_cnt)
 {
     switch(vol_cnt)
     {
-//        case 1:
-        case 5:
+        case 1:
         {
             rt_pin_write(LED_P0, PIN_LOW);
             rt_pin_write(LED_P1, PIN_HIGH);
             rt_pin_write(LED_P2, PIN_HIGH);
             rt_pin_write(LED_P3, PIN_HIGH);
-            rt_pin_write(LED_P4, PIN_HIGH);
-            rt_pin_write(LED_P5, PIN_HIGH);
-            rt_pin_write(LED_P6, PIN_HIGH);
-            rt_pin_write(LED_P7, PIN_HIGH);
-            break;
-        }
-        case 1:
-        {
-            rt_pin_write(LED_P0, PIN_HIGH);
-            rt_pin_write(LED_P1, PIN_LOW);
-            rt_pin_write(LED_P2, PIN_HIGH);
-            rt_pin_write(LED_P3, PIN_HIGH);
-            rt_pin_write(LED_P4, PIN_HIGH);
-            rt_pin_write(LED_P5, PIN_HIGH);
-            rt_pin_write(LED_P6, PIN_HIGH);
-            rt_pin_write(LED_P7, PIN_HIGH);
-            break;
-        }
-        case 6:
-        {
-            rt_pin_write(LED_P0, PIN_HIGH);
-            rt_pin_write(LED_P1, PIN_HIGH);
-            rt_pin_write(LED_P2, PIN_LOW);
-            rt_pin_write(LED_P3, PIN_HIGH);
-            rt_pin_write(LED_P4, PIN_HIGH);
-            rt_pin_write(LED_P5, PIN_HIGH);
-            rt_pin_write(LED_P6, PIN_HIGH);
-            rt_pin_write(LED_P7, PIN_HIGH);
             break;
         }
         case 2:
         {
             rt_pin_write(LED_P0, PIN_HIGH);
-            rt_pin_write(LED_P1, PIN_HIGH);
-            rt_pin_write(LED_P2, PIN_HIGH);
-            rt_pin_write(LED_P3, PIN_LOW);
-            rt_pin_write(LED_P4, PIN_HIGH);
-            rt_pin_write(LED_P5, PIN_HIGH);
-            rt_pin_write(LED_P6, PIN_HIGH);
-            rt_pin_write(LED_P7, PIN_HIGH);
-            break;
-        }
-        case 7:
-        {
-            rt_pin_write(LED_P0, PIN_HIGH);
-            rt_pin_write(LED_P1, PIN_HIGH);
+            rt_pin_write(LED_P1, PIN_LOW);
             rt_pin_write(LED_P2, PIN_HIGH);
             rt_pin_write(LED_P3, PIN_HIGH);
-            rt_pin_write(LED_P4, PIN_LOW);
-            rt_pin_write(LED_P5, PIN_HIGH);
-            rt_pin_write(LED_P6, PIN_HIGH);
-            rt_pin_write(LED_P7, PIN_HIGH);
             break;
         }
         case 3:
         {
             rt_pin_write(LED_P0, PIN_HIGH);
             rt_pin_write(LED_P1, PIN_HIGH);
-            rt_pin_write(LED_P2, PIN_HIGH);
+            rt_pin_write(LED_P2, PIN_LOW);
             rt_pin_write(LED_P3, PIN_HIGH);
-            rt_pin_write(LED_P4, PIN_HIGH);
-            rt_pin_write(LED_P5, PIN_LOW);
-            rt_pin_write(LED_P6, PIN_HIGH);
-            rt_pin_write(LED_P7, PIN_HIGH);
-            break;
-        }
-        case 8:
-        {
-            rt_pin_write(LED_P0, PIN_HIGH);
-            rt_pin_write(LED_P1, PIN_HIGH);
-            rt_pin_write(LED_P2, PIN_HIGH);
-            rt_pin_write(LED_P3, PIN_HIGH);
-            rt_pin_write(LED_P4, PIN_HIGH);
-            rt_pin_write(LED_P5, PIN_HIGH);
-            rt_pin_write(LED_P6, PIN_LOW);
-            rt_pin_write(LED_P7, PIN_HIGH);
             break;
         }
         case 4:
@@ -329,11 +132,7 @@ void set_vol_led(uint16_t vol_cnt)
             rt_pin_write(LED_P0, PIN_HIGH);
             rt_pin_write(LED_P1, PIN_HIGH);
             rt_pin_write(LED_P2, PIN_HIGH);
-            rt_pin_write(LED_P3, PIN_HIGH);
-            rt_pin_write(LED_P4, PIN_HIGH);
-            rt_pin_write(LED_P5, PIN_HIGH);
-            rt_pin_write(LED_P6, PIN_HIGH);
-            rt_pin_write(LED_P7, PIN_LOW);
+            rt_pin_write(LED_P3, PIN_LOW);
             break;
         }
         default:
@@ -342,10 +141,6 @@ void set_vol_led(uint16_t vol_cnt)
             rt_pin_write(LED_P1, PIN_HIGH);
             rt_pin_write(LED_P2, PIN_HIGH);
             rt_pin_write(LED_P3, PIN_HIGH);
-            rt_pin_write(LED_P4, PIN_HIGH);
-            rt_pin_write(LED_P5, PIN_HIGH);
-            rt_pin_write(LED_P6, PIN_HIGH);
-            rt_pin_write(LED_P7, PIN_HIGH);
             break;
         }
     }
@@ -439,7 +234,6 @@ void sts_led_update(void)
     else
         set_ind_led(0,1);
 
-//    if((g_sys.stat.ms_status&GBM_POUT) != 0)
     if(((g_sys.stat.ms_status>>GBM_LINK)&0x0001) == 1)
         set_ind_led(1,0);
     else
@@ -455,12 +249,6 @@ static int  led_init(void)
     rt_pin_mode(LED_BAT1, PIN_MODE_OUTPUT);
     rt_pin_mode(LED_BAT2, PIN_MODE_OUTPUT);
     rt_pin_mode(LED_BAT3, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_BAT4, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_BAT5, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_BAT6, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_BAT7, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_BAT8, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_BAT9, PIN_MODE_OUTPUT);
 
     rt_pin_mode(LED_F0, PIN_MODE_OUTPUT);
     rt_pin_mode(LED_F1, PIN_MODE_OUTPUT);
@@ -471,10 +259,6 @@ static int  led_init(void)
     rt_pin_mode(LED_P1, PIN_MODE_OUTPUT);
     rt_pin_mode(LED_P2, PIN_MODE_OUTPUT);
     rt_pin_mode(LED_P3, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_P4, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_P5, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_P6, PIN_MODE_OUTPUT);
-    rt_pin_mode(LED_P7, PIN_MODE_OUTPUT);
 
     rt_pin_mode(FAN_CTRL, PIN_MODE_OUTPUT);
 

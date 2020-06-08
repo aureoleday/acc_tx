@@ -17,7 +17,7 @@
 #define     STS_GPRS        GET_PIN(C, 15)
 #define     STS_LINK1       GET_PIN(A, 15)
 #define     STS_LINK2       GET_PIN(C, 13)
-#define     STS_LOAD_DET    GET_PIN(A, 0)
+#define     STS_LOAD_DET    GET_PIN(B, 1)
 
 #define     Bit_RESET		0
 #define     Bit_SET		 	1	
@@ -49,7 +49,7 @@ void pb_evt(uint16_t pin_id)
 		{
             if(g_sys.stat.out_en == 0)
                 break;
-			if(g_sys.stat.freq_index < 4)
+			if(g_sys.stat.freq_index < 3)
 				g_sys.stat.freq_index++;
 			freq_opt(g_sys.stat.freq_index);
 			break;		
@@ -58,7 +58,7 @@ void pb_evt(uint16_t pin_id)
 		{
             if(g_sys.stat.out_en == 0)
                 break;
-			if(g_sys.stat.volum_index < 8)
+			if(g_sys.stat.volum_index < 4)
 				g_sys.stat.volum_index++;
 			volum_opt(g_sys.stat.volum_index);
 			break;		

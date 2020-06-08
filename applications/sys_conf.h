@@ -29,6 +29,7 @@ typedef struct
     uint16_t    rect_val;      //
     uint16_t    dac_offset;
     uint16_t    volum_step;
+    uint16_t    beep_en;
     uint16_t    bat_mav_cnt;
     uint16_t    bat_up_lim;
     uint16_t    bat_low_lim;

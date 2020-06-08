@@ -20,7 +20,7 @@ const conf_reg_map_st conf_reg_map_inst[CONF_REG_MAP_NUM]=
     {	9,		&g_sys.conf.bat_up_lim,                  3000,      6400,               4200,            0,       NULL},
     {	10,		&g_sys.conf.bat_low_lim,                 0,         4500,               2800,            0,       NULL},
     {	11,		&g_sys.conf.bat_mav_cnt,			     0,		    128,                32,              0,       NULL},
-    {	12,		NULL,			                         0,		    0,                  0,               0,       NULL},
+    {	12,		&g_sys.conf.beep_en,                     0,         1,                  1,               0,       NULL},
     {	13,		NULL,			                         0,		    0,                  0,               0,       NULL},
     {	14,		NULL,			                         0,		    0,                  0,               0,       NULL},
     {	15,		NULL,			                         9527,		9527,               0,               0,       sys_reset_opt},
@@ -44,7 +44,7 @@ const sts_reg_map_st status_reg_map_inst[STAT_REG_MAP_NUM]=
   { 12,          &g_sys.stat.mul_factor,                 6},
   { 13,          &g_sys.stat.out_en,                     0},
   { 14,          &g_sys.stat.freq_index,                 1},
-  { 15,          &g_sys.stat.volum_index,                4}
+  { 15,          &g_sys.stat.volum_index,                1}
 };
 
 static void init_load_status(void)

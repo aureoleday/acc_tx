@@ -132,7 +132,7 @@ void bat_update(void)
 	g_sys.stat.mcu_temp = temp_mav_calc(g_sys.conf.bat_mav_cnt);
 //	g_sys.stat.mcu_temp = adc_get_temp();
 //	rt_kprintf("t:%d",g_sys.stat.mcu_temp);
-	set_bat_led(g_sys.stat.bat_volum/10);
+	set_bat_led(g_sys.stat.bat_volum/25);
 }
 
 void bat_ds_init(void)
