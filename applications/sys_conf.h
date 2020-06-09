@@ -22,9 +22,7 @@ typedef struct
     uint16_t    pwr_en;         //0:disable;1:enable
     uint16_t    freq_set;       //0:290;1:470;2:580;3:690
     uint16_t    volum_set;      //0:1/8;1:1/4;2:1/2;0:1/1;
-    uint16_t    dt_half_shift;  //f2_freq = f1_freq(1+0.5*(dt_half_shift+1))
-    uint16_t    phase_offset;   //f2_freq = f1_freq(1+0.5*(dt_half_shift+1))
-    uint16_t    wg_mode;        //0:rectangle_wave;1:sin_wave;
+    uint16_t    high_pwr_timeout;  //0:rectangle_wave;1:sin_wave;
     uint16_t    rect_freq;      //
     uint16_t    rect_val;      //
     uint16_t    dac_offset;

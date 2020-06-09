@@ -171,10 +171,7 @@ int16_t sr_hwt_start(int16_t sec,int16_t u_sec)
     rt_hwtimerval_t timeout_s;      /* 定时器超时值 */
     /* 设置定时器超时值为u_sec us并启动定时器 */
     timeout_s.sec = sec;      /* 秒 */
-    if(g_sys.conf.wg_mode == 0)
-        timeout_s.usec = 500000/u_sec + 1;
-    else
-        timeout_s.usec = u_sec;     /* 微秒 */
+    timeout_s.usec = 500000/u_sec + 1;
 
     if (rt_device_write(hw_dev, 0, &timeout_s, sizeof(timeout_s)) != sizeof(timeout_s))
     {

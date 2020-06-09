@@ -14,7 +14,7 @@ const conf_reg_map_st conf_reg_map_inst[CONF_REG_MAP_NUM]=
     {	3,		NULL,                                    0,         0,                  0,               0,       NULL},
     {	4,		NULL,                                    0,         0,                  0,               0,       NULL},
     {	5,		&g_sys.conf.rect_freq,                   100,       6000,               470,             0,       rect_freq_opt},
-    {	6,		&g_sys.conf.phase_offset,                0,         255,                0,               0,       NULL},
+    {	6,		&g_sys.conf.high_pwr_timeout,            5,         5000,               300,             0,       NULL},
     {	7,		&g_sys.conf.volum_step,                  1,         100,                1,               0,       NULL},
     {	8,		&g_sys.conf.dac_offset,                  0,         2048,               2047,            0,       NULL},
     {	9,		&g_sys.conf.bat_up_lim,                  3000,      6400,               4200,            0,       NULL},

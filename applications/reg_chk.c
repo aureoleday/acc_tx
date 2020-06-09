@@ -7,7 +7,7 @@ uint16_t power_en_opt(uint16_t pram)
 {
     extern sys_reg_st  g_sys;
 
-    if((pram == 1)&&(((g_sys.stat.ms_status>>GBM_LOAD)&0x0001) == 0))
+    if((pram == 1)&&(((g_sys.stat.ms_status>>GBM_LOAD)&0x0001) == 1))
     {
         g_sys.stat.volum_reg = 0;
         sr_hwt_start(0,g_sys.stat.rect_freq);
