@@ -11,10 +11,10 @@
 #define LED_STS        GET_PIN(B, 3)
 #define LED_COM        GET_PIN(B, 4)
 
-#define LED_BAT0       GET_PIN(C, 0)
-#define LED_BAT1       GET_PIN(C, 1)
-#define LED_BAT2       GET_PIN(C, 2)
-#define LED_BAT3       GET_PIN(C, 3)
+#define LED_BAT0       GET_PIN(C, 3)
+#define LED_BAT1       GET_PIN(C, 2)
+#define LED_BAT2       GET_PIN(C, 1)
+#define LED_BAT3       GET_PIN(C, 0)
 
 #define LED_F0         GET_PIN(C, 10)
 #define LED_F1         GET_PIN(C, 11)

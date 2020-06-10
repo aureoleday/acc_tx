@@ -46,69 +46,7 @@ const uint16_t OPWR_IND[5] =
 
 int16_t sr_hwt_stop(void);
 
-//static rt_err_t dac_cb(rt_device_t dev, rt_size_t size)
-//{
-//    extern sys_reg_st  g_sys;
-//    static uint16_t f1_ind = 0;
-//    static uint16_t rect_flag=0;
-//    int16_t sig0=0,sig1=0;
-//    uint16_t sig_mix = 0;
-//
-//    if(g_sys.conf.wg_mode == 0)
-//    {
-//
-//        if(g_sys.stat.volum_index >= 8)
-//            sig0 = OPWR_IND[8];
-//        else
-//            sig0 = OPWR_IND[g_sys.stat.volum_index];
-//
-//        if(rect_flag == 0)
-//        {
-//            sig_mix = 200;
-//            rect_flag = 1;
-//        }
-//        else
-//        {
-//            sig_mix = g_sys.stat.volum_reg + 200;
-//            rect_flag = 0;
-//        }
-//
-//        if(g_sys.stat.out_en == 0)
-//        {
-//            if(g_sys.stat.volum_reg > 0)
-//                g_sys.stat.volum_reg--;
-//            else
-//                sr_hwt_stop();
-//        }
-//        else
-//        {
-//            if(g_sys.stat.volum_reg < sig0)
-//            {
-//                g_sys.stat.volum_reg += g_sys.conf.volum_step;
-//            }
-//            else if(g_sys.stat.volum_reg > sig0)
-//            {
-//                g_sys.stat.volum_reg -= g_sys.conf.volum_step;
-//            }
-//        }
-//    }
-//    else if(g_sys.conf.wg_mode == 1)
-//    {
-//        sig1 = (Sine12bit[f1_ind]-2047)>>(10-g_sys.stat.volum_index);
-//        sig_mix = (sig1>>(10-g_sys.stat.volum_index)) +g_sys.conf.dac_offset;
-//        f1_ind = (f1_ind+g_sys.stat.mul_factor)&0x00ff;
-//        if(g_sys.stat.out_en == 0)
-//            sr_hwt_stop();
-//    }
-//    else
-//    {
-//        sig_mix = 0;
-//    }
-//
-//    HAL_DAC_SetValue(&hdac,DAC_CHANNEL_1,DAC_ALIGN_12B_R,sig_mix);
-//
-//    return 0;
-//}
+
 
 static rt_err_t dac_cb(rt_device_t dev, rt_size_t size)
 {
