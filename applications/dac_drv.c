@@ -23,6 +23,13 @@ DAC_HandleTypeDef hdac;
 TIM_HandleTypeDef htim6;
 TIM_HandleTypeDef htim2;
 
+
+//1x
+//const uint16_t OPWR_IND[10] =
+//{      //2     5   10   15   20   30    40    50    60    hl
+//        353, 588, 789, 967, 1116, 1367, 1578, 1765, 1933, 2603
+//};
+
 //1x-200DAC
 //const uint16_t OPWR_IND[10] =
 //{

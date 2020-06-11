@@ -50,7 +50,7 @@ static uint16_t adc_get_temp(void)
 
 //    rt_kprintf("tc1:%d,tc2:%d\n",tc1,tc2);
     temperate = ((float)temp*3.3/0x1000);
-    temperate = 25 + (1.34-temperate)/0.0043;
+    temperate = 25 + (1.43-temperate)/0.0043;
     volt = temperate*10;
     return volt;
 }

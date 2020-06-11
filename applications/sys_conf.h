@@ -22,6 +22,7 @@ typedef struct
     uint16_t    pwr_en;         //0:disable;1:enable
     uint16_t    freq_set;       //0:290;1:470;2:580;3:690
     uint16_t    volum_set;      //0:1/8;1:1/4;2:1/2;0:1/1;
+    uint16_t    fan_en;      //0:1/8;1:1/4;2:1/2;0:1/1;
     uint16_t    high_pwr_timeout;  //0:rectangle_wave;1:sin_wave;
     uint16_t    rect_freq;      //
     uint16_t    rect_val;      //

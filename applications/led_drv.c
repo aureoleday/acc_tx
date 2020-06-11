@@ -225,6 +225,14 @@ void set_ind_led(uint8_t led_type, uint8_t bit_action)
 	}
 }
 
+static void fan_ctrl(uint16_t enable)
+{
+    if(enable == 1)
+        rt_pin_write(FAN_CTRL, 1);
+    else
+        rt_pin_write(FAN_CTRL, 0);
+}
+
 void sts_led_update(void)
 {
     extern sys_reg_st  g_sys;
@@ -238,6 +246,8 @@ void sts_led_update(void)
         set_ind_led(1,0);
     else
         set_ind_led(1,1);
+
+    fan_ctrl(g_sys.conf.fan_en);
 }
 
 static int  led_init(void)

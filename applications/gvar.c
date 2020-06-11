@@ -11,7 +11,7 @@ const conf_reg_map_st conf_reg_map_inst[CONF_REG_MAP_NUM]=
     {	0,		&g_sys.conf.pwr_en,                      0,		    1,                  0,               0,       power_en_opt},
     {	1,		&g_sys.conf.freq_set,                    0,         4,                  1,               0,       freq_opt},
     {	2,		&g_sys.conf.volum_set,                   0,         8,                  4,               0,       volum_opt},
-    {	3,		NULL,                                    0,         0,                  0,               0,       NULL},
+    {	3,		&g_sys.conf.fan_en,                      0,         1,                  0,               0,       NULL},
     {	4,		NULL,                                    0,         0,                  0,               0,       NULL},
     {	5,		&g_sys.conf.rect_freq,                   100,       6000,               470,             0,       rect_freq_opt},
     {	6,		&g_sys.conf.high_pwr_timeout,            5,         5000,               300,             0,       NULL},

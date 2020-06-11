@@ -27,7 +27,7 @@ typedef long					 		int32;
 //#define SYS_DEBUG
 #define STAT_REG_MAP_NUM        16
 #define CONF_REG_MAP_NUM		16
-#define SOFTWARE_VER			0x0203
+#define SOFTWARE_VER			0x0204
 #define HARDWARE_VER			0x0200
 
 enum
