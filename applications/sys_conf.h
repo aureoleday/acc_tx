@@ -32,6 +32,8 @@ typedef struct
     uint16_t    bat_mav_cnt;
     uint16_t    bat_up_lim;
     uint16_t    bat_low_lim;
+    uint16_t    fan_start_temp;
+    uint16_t    fan_speed;
 }config_st;
 
 typedef struct

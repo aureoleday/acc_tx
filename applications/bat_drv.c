@@ -43,8 +43,6 @@ static uint16_t adc_get_volt(uint8_t chan_id)
 static uint16_t adc_get_temp(void)
 {
     uint16_t temp,volt;
-//    tc1 = *((__IO uint16_t*)( (uint32_t)TS1_CAL_Flash_Add ));
-//    tc2 = *((__IO uint16_t*)( (uint32_t)TS2_CAL_Flash_Add ));
     float temperate;
     temp = adc_get_raw(ADC_CHANNEL_TEMPSENSOR);
 
@@ -135,16 +133,27 @@ void bat_update(void)
 	set_bat_led(g_sys.stat.bat_volum/25);
 }
 
-void bat_ds_init(void)
+void temp_ds_init(void)
 {
 	uint16_t i;
 	for(i=0;i<MAV_MAX_CNT;i++)
 	{
 		bat_inst.mav_buffer[i] = 0;
 	}
-	bat_inst.accum_sum = 0;
-	bat_inst.mav_cnt = 0;
+	temp_inst.accum_sum = 0;
+	temp_inst.mav_cnt = 0;
 	adc_init();
+}
+
+void bat_ds_init(void)
+{
+    uint16_t i;
+    for(i=0;i<MAV_MAX_CNT;i++)
+    {
+        bat_inst.mav_buffer[i] = 0;
+    }
+    bat_inst.accum_sum = 0;
+    bat_inst.mav_cnt = 0;
 }
 
 static int bat_drv_init(void)

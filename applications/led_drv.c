@@ -26,8 +26,6 @@
 #define LED_P2         GET_PIN(A, 7)
 #define LED_P3         GET_PIN(A, 8)
 
-#define FAN_CTRL       GET_PIN(A, 12)
-
 #define     Bit_RESET		0
 #define     Bit_SET		 	1	
 
@@ -225,13 +223,13 @@ void set_ind_led(uint8_t led_type, uint8_t bit_action)
 	}
 }
 
-static void fan_ctrl(uint16_t enable)
-{
-    if(enable == 1)
-        rt_pin_write(FAN_CTRL, 1);
-    else
-        rt_pin_write(FAN_CTRL, 0);
-}
+//static void fan_ctrl(uint16_t enable)
+//{
+//    if(enable == 1)
+//        rt_pin_write(FAN_CTRL, 1);
+//    else
+//        rt_pin_write(FAN_CTRL, 0);
+//}
 
 void sts_led_update(void)
 {
@@ -247,7 +245,7 @@ void sts_led_update(void)
     else
         set_ind_led(1,1);
 
-    fan_ctrl(g_sys.conf.fan_en);
+//    fan_ctrl(g_sys.conf.fan_en);
 }
 
 static int  led_init(void)
@@ -270,10 +268,9 @@ static int  led_init(void)
     rt_pin_mode(LED_P2, PIN_MODE_OUTPUT);
     rt_pin_mode(LED_P3, PIN_MODE_OUTPUT);
 
-    rt_pin_mode(FAN_CTRL, PIN_MODE_OUTPUT);
-
     set_freq_led(5);
     set_vol_led(0);
+
     return 0;
 }
 

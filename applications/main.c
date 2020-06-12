@@ -25,6 +25,49 @@
 /* defined the LED3 pin: PA3 */
 #define LED3_PIN    GET_PIN(B, 15)
 
+#define FAN_CTRL       GET_PIN(A, 12)
+
+#define TEMP_HYST   20
+
+static rt_timer_t fan_pwm_tm;
+
+static void fan_pwm_to(void *parameter)
+{
+    extern sys_reg_st  g_sys;
+    static uint16_t tim_cnt = 0;
+    static uint8_t state = 0;
+
+    if((g_sys.stat.mcu_temp > (g_sys.conf.fan_start_temp+TEMP_HYST))&&(g_sys.conf.fan_en == 1))
+        state = 1;
+    else if(g_sys.stat.mcu_temp < (g_sys.conf.fan_start_temp - TEMP_HYST))
+        state = 0;
+
+    if(state == 1)
+    {
+        if (tim_cnt < g_sys.conf.fan_speed)
+            rt_pin_write(FAN_CTRL, PIN_HIGH);
+        else
+            rt_pin_write(FAN_CTRL, PIN_LOW);
+    }
+    else
+        rt_pin_write(FAN_CTRL, PIN_LOW);
+//    if(tim_cnt == 10)
+//        rt_kprintf("e:%d,s:%d,ts:%d,tc:%d\n",g_sys.conf.fan_en,state,g_sys.stat.mcu_temp,g_sys.conf.fan_start_temp);
+
+    tim_cnt++;
+    if(tim_cnt > 10)
+        tim_cnt = 0;
+}
+
+static void fan_init(void)
+{
+    rt_pin_mode(FAN_CTRL, PIN_MODE_OUTPUT);
+    fan_pwm_tm = rt_timer_create("fan_pwm_tm", fan_pwm_to,
+                             RT_NULL, 1,
+                             RT_TIMER_FLAG_PERIODIC);
+
+    if (fan_pwm_tm != RT_NULL) rt_timer_start(fan_pwm_tm);
+}
 
 int main(void)
 {
@@ -35,6 +78,7 @@ int main(void)
 
     dac_init();
     pb_init();
+    fan_init();
 
     while (count++)
     {
